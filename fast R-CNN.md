@@ -1,5 +1,4 @@
-![屏幕快照 2017-12-17 09.49.54](/Users/baihai/Desktop/屏幕快照 2017-12-17 09.49.54.png)
-
+![image](https://github.com/872822645/danxuankuangDemo/blob/master/1.jpg)
 一、优点
 
 1、加速
