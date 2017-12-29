@@ -1,0 +1,1 @@
+![image](https://github.com/shiyanwudi922/paper_summary/blob/master/picture/GlobalBeliefRecursiveNeuralNetworks/figure2.png)
