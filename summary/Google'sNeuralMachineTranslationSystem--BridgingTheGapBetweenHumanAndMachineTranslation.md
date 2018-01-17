@@ -1,10 +1,10 @@
 一、NMT的三个天生的缺点
 
-1、训练和推断的速度非常慢
+1、训练和推断的速度非常慢（训练：数据并行和模型并行；推断：量化推断）
 
-2、难以有效地处理稀有词
+2、难以有效地处理稀有词（分段方法）
 
-3、有时会难以对输入句子的所有的词都进行合适地翻译，即难以完整地“覆盖”输入。
+3、有时会难以对输入句子的所有的词都进行合适地翻译，即难以完整地“覆盖”输入（解码时加入length normalization和coverage penalty）
 
 
 
@@ -12,23 +12,23 @@
 
 1、总体架构
 
-图1
+![image](https://github.com/shiyanwudi922/paper_summary/blob/master/picture/Google'sNeuralMachineTranslationSystem--BridgingTheGapBetweenHumanAndMachineTranslation/figure1.png)
 
 2、RNN的残差链接（Residual Connections）
 
-图2
+![image](https://github.com/shiyanwudi922/paper_summary/blob/master/picture/Google'sNeuralMachineTranslationSystem--BridgingTheGapBetweenHumanAndMachineTranslation/figure2.png)
 
-该残差链接用在encoder和decoder的第三层以上的网络
+该残差链接用在encoder和decoder的第三层以上的网络，大大改善了反向过程中的梯度传播过程，使得可以训练更深的encoder和decoder网络。
 
 3、encoder第一层使用双向rnn
 
-图3
+![image](https://github.com/shiyanwudi922/paper_summary/blob/master/picture/Google'sNeuralMachineTranslationSystem--BridgingTheGapBetweenHumanAndMachineTranslation/figure3.png)
 
 4、模型并行化
 
 （1）数据并行：同时训练n个模型的副本，在n个副本之间进行参数共享，每个副本对参数进行异步更新；
 
-（2）模型并行：将网络的不同层跑在不同的gpu上；对softmax层也进行分解，使不同的子集跑在不同的gpu上；
+（2）模型并行：将网络的不同层跑在不同的gpu上；对softmax层也进行分解，使不同的输出符号子集跑在不同的gpu上；
 
 （3）限制：模型并行化对模型架构带来了一些限制，例如：不能在所有的encoder层使用双向网络；不能用decoder的顶层输出进行attention计算，只能用最底层。
 
@@ -50,7 +50,7 @@
 
 1、最大似然目标函数
 
-Equation 7
+![image](https://github.com/shiyanwudi922/paper_summary/blob/master/picture/Google'sNeuralMachineTranslationSystem--BridgingTheGapBetweenHumanAndMachineTranslation/equation7.png)
 
 只使用最大似然目标函数，无法反应任务奖励函数（task reward function），会导致模型对于解码过程中出现的错误不具有鲁棒性，因为这些错误在训练过程中没有出现过。
 
@@ -58,13 +58,13 @@ Equation 7
 
 3、强化目标函数
 
-equation 8
+![image](https://github.com/shiyanwudi922/paper_summary/blob/master/picture/Google'sNeuralMachineTranslationSystem--BridgingTheGapBetweenHumanAndMachineTranslation/equation8.png)
 
 在测试时，在单句上直接使用BLEU分数会带来一些不必要的结果（因为BLEU是针对语料库提出的指标），所以本文进行了一些修改，提出了GLEU指标（召回率和准确率的最小值），在语料库级别上具有和BLEU类似的性能，而且在单句上不具有BLEU的缺点。
 
 4、混合目标函数
 
-Equation  9
+![image](https://github.com/shiyanwudi922/paper_summary/blob/master/picture/Google'sNeuralMachineTranslationSystem--BridgingTheGapBetweenHumanAndMachineTranslation/equation9.png)
 
 5、通常会先用最大似然目标函数进行训练，直到收敛；再进一步使用混合目标函数进行微调，直到验证集上的BLEU分数不再变化。
 
@@ -84,9 +84,30 @@ Equation  9
 
 （2）浮点操作改为不同精度的整数操作：对lstm中的浮点矩阵相乘，修改为一定精度的整数操作；对softmax中的浮点矩阵相乘，也修改为一定精度的整数操作
 
-3、这个方法在效率和准确率之间达到了一个很好的平衡：计算代价比较高的操作（矩阵相乘）变成了整数操作，提高了效率；对误差敏感的accumulator的值使用高精度的整数表示，准确率非常高切对量化误差具有鲁棒性。
+3、这个方法在效率和准确率之间达到了一个很好的平衡：计算代价比较高的操作（矩阵相乘）变成了整数操作，提高了效率；对误差敏感的accumulator的值使用高精度的整数表示，准确率非常高且对量化误差具有鲁棒性。
 
-4、实验证明本文方法的准确率和效率：见table1
+4、实验证明本文方法的准确率和效率：
+
+![image](https://github.com/shiyanwudi922/paper_summary/blob/master/picture/Google'sNeuralMachineTranslationSystem--BridgingTheGapBetweenHumanAndMachineTranslation/table1.png)
 
 
 
+六、解码
+
+1、在原始的beam search上增加了两个改进
+
+![image](https://github.com/shiyanwudi922/paper_summary/blob/master/picture/Google'sNeuralMachineTranslationSystem--BridgingTheGapBetweenHumanAndMachineTranslation/equation14.png)
+
+（1）length normalization：在原始beam search中，decoding的每一步，都会在序列的对数概率上加一个负数，从而导致模型倾向于选择长度较短的输出序列，所以需要加入length normalization来抑制这种情况；
+
+（2）coverage penalty：防止模型出现“不能对输入序列的每一个词都进行翻译”的情况；
+
+2、为了提高decoding效率，进行了剪枝
+
+（1）减少beamsize的值；
+
+（2）在decoding的每一步，生成新的token时，只保留分数最高的beamsize个token；
+
+（3）仍然在decoding的每一步，只保留分数最高的beamsize个序列，其余的序列从候补集中删除；
+
+3、length normalization和coverage penalty对于只使用ML目标函数训练的模型比较有效；而对先使用ML预训练，再使用RL进行微调的模型不是特别有效，主要是由于在RL微调的过程中，模型已经注意了完整的源句子，不会产生欠翻译或过翻译的问题（under-translate, over-translate）。
