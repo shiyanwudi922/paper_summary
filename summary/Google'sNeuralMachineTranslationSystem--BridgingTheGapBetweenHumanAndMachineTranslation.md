@@ -90,3 +90,22 @@ Equation  9
 
 
 
+六、解码
+
+1、在原始的beam search上增加了两个改进
+
+equation 14
+
+（1）length normalization：在原始beam search中，decoding的每一步，都会在序列的对数概率上加一个负数，从而导致模型倾向于选择长度较短的输出序列，所以需要加入length normalization来抑制这种情况；
+
+（2）coverage penalty：防止模型出现“不能对输入序列的每一个词都进行翻译”的情况；
+
+2、为了提高decoding效率，进行了剪枝
+
+（1）减少beamsize的值；
+
+（2）在decoding的每一步，生成新的token时，只保留分数最高的beamsize个token；
+
+（3）仍然在decoding的每一步，只保留分数最高的beamsize个序列，其余的序列从候补集中删除；
+
+3、length normalization和coverage penalty对于只使用ML目标函数训练的模型比较有效；而对先使用ML预训练，在使用RL进行微调的模型不是特别有效，主要是由于在RL微调的过程中，模型已经注意了完整的源句子，不会产生欠翻译或过翻译的问题（under-translate, over-translate）。
