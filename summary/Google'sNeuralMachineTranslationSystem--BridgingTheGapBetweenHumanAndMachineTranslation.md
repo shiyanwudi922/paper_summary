@@ -12,17 +12,17 @@
 
 1、总体架构
 
-图1
+![image](https://github.com/shiyanwudi922/paper_summary/blob/master/picture/Google'sNeuralMachineTranslationSystem--BridgingTheGapBetweenHumanAndMachineTranslation/figure1.png)
 
 2、RNN的残差链接（Residual Connections）
 
-图2
+![image](https://github.com/shiyanwudi922/paper_summary/blob/master/picture/Google'sNeuralMachineTranslationSystem--BridgingTheGapBetweenHumanAndMachineTranslation/figure2.png)
 
 该残差链接用在encoder和decoder的第三层以上的网络，大大改善了反向过程中的梯度传播，使得可以训练更深的encoder和decoder网络。
 
 3、encoder第一层使用双向rnn
 
-图3
+![image](https://github.com/shiyanwudi922/paper_summary/blob/master/picture/Google'sNeuralMachineTranslationSystem--BridgingTheGapBetweenHumanAndMachineTranslation/figure3.png)
 
 4、模型并行化
 
@@ -50,7 +50,7 @@
 
 1、最大似然目标函数
 
-Equation 7
+![image](https://github.com/shiyanwudi922/paper_summary/blob/master/picture/Google'sNeuralMachineTranslationSystem--BridgingTheGapBetweenHumanAndMachineTranslation/equation7.png)
 
 只使用最大似然目标函数，无法反应任务奖励函数（task reward function），会导致模型对于解码过程中出现的错误不具有鲁棒性，因为这些错误在训练过程中没有出现过。
 
@@ -58,13 +58,13 @@ Equation 7
 
 3、强化目标函数
 
-equation 8
+![image](https://github.com/shiyanwudi922/paper_summary/blob/master/picture/Google'sNeuralMachineTranslationSystem--BridgingTheGapBetweenHumanAndMachineTranslation/equation8.png)
 
 在测试时，在单句上直接使用BLEU分数会带来一些不必要的结果（因为BLEU是针对语料库提出的指标），所以本文进行了一些修改，提出了GLEU指标（召回率和准确率的最小值），在语料库级别上具有和BLEU类似的性能，而且在单句上不具有BLEU的缺点。
 
 4、混合目标函数
 
-Equation  9
+![image](https://github.com/shiyanwudi922/paper_summary/blob/master/picture/Google'sNeuralMachineTranslationSystem--BridgingTheGapBetweenHumanAndMachineTranslation/equation9.png)
 
 5、通常会先用最大似然目标函数进行训练，直到收敛；再进一步使用混合目标函数进行微调，直到验证集上的BLEU分数不再变化。
 
@@ -88,7 +88,7 @@ Equation  9
 
 4、实验证明本文方法的准确率和效率：
 
-Table1
+![image](https://github.com/shiyanwudi922/paper_summary/blob/master/picture/Google'sNeuralMachineTranslationSystem--BridgingTheGapBetweenHumanAndMachineTranslation/table1.png)
 
 
 
@@ -96,7 +96,7 @@ Table1
 
 1、在原始的beam search上增加了两个改进
 
-equation 14
+![image](https://github.com/shiyanwudi922/paper_summary/blob/master/picture/Google'sNeuralMachineTranslationSystem--BridgingTheGapBetweenHumanAndMachineTranslation/equation14.png)
 
 （1）length normalization：在原始beam search中，decoding的每一步，都会在序列的对数概率上加一个负数，从而导致模型倾向于选择长度较短的输出序列，所以需要加入length normalization来抑制这种情况；
 
