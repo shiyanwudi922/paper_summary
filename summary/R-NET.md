@@ -10,7 +10,7 @@
 
 二、R-NET网络结构
 
-figure1
+![image](https://github.com/shiyanwudi922/paper_summary/blob/master/picture/R-NET/figure1.png)
 
 1、问题和文本编码
 
@@ -18,21 +18,21 @@ figure1
 
 （2）编码：获得问题和文本的词向量序列之后，分别使用双向rnn进行处理，对每一个时刻的hidden state进行连接，从而得到问题和文本的编码序列。
 
-equation 1 and 2
+![image](https://github.com/shiyanwudi922/paper_summary/blob/master/picture/R-NET/equation1%262.png)
 
 2、gated attention-based recurrent networks
 
 （1）对于文本序列中的每一个词，都在问题序列上计算attention，并得到对应的问题序列的加权和上下文向量
 
-equation 4
+![image](https://github.com/shiyanwudi922/paper_summary/blob/master/picture/R-NET/equation4.png)
 
 （2）加入门操作，对文本序列中的每一个词及其上下文向量的内容进行选择，从而处理“文本中只有部分信息和特定的问题相关，通过门操作来决定文本中的信息对于特定问题的重要性”
 
-equation 6
+![image](https://github.com/shiyanwudi922/paper_summary/blob/master/picture/R-NET/equation6.png)
 
 （3）使用双向rnn对门限之后的向量序列进行处理（在equation3中显示的是单向rnn，但是figure1中显示的是双向），计算question-aware repersentation for passage
 
-Equation 3
+![image](https://github.com/shiyanwudi922/paper_summary/blob/master/picture/R-NET/equation3.png)
 
 3、self-matching attention
 
@@ -40,29 +40,29 @@ Equation 3
 
 （2）对于question-aware passage representation中的每一个词，计算在自身序列上的attention，并得到对应的加权和上下文向量
 
-equation 8
+![image](https://github.com/shiyanwudi922/paper_summary/blob/master/picture/R-NET/equation8.png)
 
 （3）加入门操作，方式和之前一样
 
 （4）使用双向rnn对门限之后的向量序列进行处理，得到最终的文本向量序列
 
-equation 7
+![image](https://github.com/shiyanwudi922/paper_summary/blob/master/picture/R-NET/equation7.png)
 
 4、输出层：输出层使用的是poiter network，实质上是一个基于attention且只有两个time step的rnn，每一个time step分别输出答案序列在原文中的的起始位置和终止位置。在每一个时刻上，其attention概率分布就是起始/终止位置的概率分布，本文中使用最大概率对应的位置作为当前时刻的输出位置。
 
 （1）pointer network的初始状态：由问题向量序列通过attention合成
 
-equation 11
+![image](https://github.com/shiyanwudi922/paper_summary/blob/master/picture/R-NET/equation11.png)
 
 其中Vr是参数向量
 
 （2）在每个时刻，通过attention计算起始/终止位置
 
-equation 9
+![image](https://github.com/shiyanwudi922/paper_summary/blob/master/picture/R-NET/equation9.png)
 
 （3）在每个时刻，使用attention计算文本向量的加权和，作为rnn的输入，计算当前时刻rnn的输出
 
-equation 10
+![image](https://github.com/shiyanwudi922/paper_summary/blob/master/picture/R-NET/equation10.png)
 
 
 
@@ -70,9 +70,9 @@ equation 10
 
 1、本文中提出的R-NET在SQuAD和MS-MARCO上均达到了state-of-the-art的结果
 
-table2
+![image](https://github.com/shiyanwudi922/paper_summary/blob/master/picture/R-NET/table2.png)
 
-table3
+![image](https://github.com/shiyanwudi922/paper_summary/blob/master/picture/R-NET/table3.png)
 
 2、除了直接的实验结果，本文还列出了在研究过程中的一些探索，虽然最后没有成功，但是这些探索的方向值得学习：
 
