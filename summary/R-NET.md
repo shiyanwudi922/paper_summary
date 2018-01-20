@@ -48,5 +48,39 @@ equation 8
 
 equation 7
 
+4、输出层：输出层使用的是poiter network，实质上是一个基于attention且只有两个time step的rnn，每一个time step分别输出答案序列在原文中的的起始位置和终止位置。在每一个时刻上，其attention概率分布就是起始/终止位置的概率分布，本文中使用最大概率对应的位置作为当前时刻的输出位置。
 
+（1）pointer network的初始状态：由问题向量序列通过attention合成
+
+equation 11
+
+其中Vr是参数向量
+
+（2）在每个时刻，通过attention计算起始/终止位置
+
+equation 9
+
+（3）在每个时刻，使用attention计算文本向量的加权和，作为rnn的输入，计算当前时刻rnn的输出
+
+equation 10
+
+
+
+三、实验
+
+1、本文中提出的R-NET在SQuAD和MS-MARCO上均达到了state-of-the-art的结果
+
+table2
+
+table3
+
+2、除了直接的实验结果，本文还列出了在研究过程中的一些探索，虽然最后没有成功，但是这些探索的方向值得学习：
+
+（1）句子排序（Sentence Ranking）
+
+（2）加入语法信息（Syntax Information）：词性标注，命名实体识别线性PCFG树标注、依赖标签等。
+
+（3）多级推断（Multi-hop Inference）
+
+（4）问题生成（Question Generation）
 
