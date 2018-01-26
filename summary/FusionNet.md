@@ -16,7 +16,7 @@ fully-aware表示使用了词的完整信息，即history-of-word，来计算att
 
 1、常用的机器阅读理解框架包括三个部分
 
-figure2
+![image](https://github.com/shiyanwudi922/paper_summary/blob/master/picture/FusionNet/figure2.png)
 
 （1）Input Vectors：在文本和问题中每一个词的embedding
 
@@ -46,25 +46,25 @@ figure2
 
 原始的attention在计算分数时，使用的是A和B中的原始词，当使用fully-aware attention时，将该原始词改为对应的history-of-word。
 
-Fully-aware attention
+![image](https://github.com/shiyanwudi922/paper_summary/blob/master/picture/FusionNet/fully-aware-attention.png)
 
 （3）improved scoring function
 
 原始的attention scoring function：
 
-Original-scoring
+![image](https://github.com/shiyanwudi922/paper_summary/blob/master/picture/FusionNet/original-scoring.png)
 
 两个大的参数矩阵直接交互会使得神经网络难以训练
 
 加入对称性的attention scoring function：
 
-symmetric-scoring
+![image](https://github.com/shiyanwudi922/paper_summary/blob/master/picture/FusionNet/symmetric-scoring.png)
 
 加入了对称性，参数矩阵只有一个（D为对角矩阵），一方面使得模型更容易训练，另一方面对称性使得模型可以对不相似的向量赋予更高的分数，即使模型具有在不相似的向量之间进行对齐的能力
 
 加入对称性和非线性的attention scoring function：
 
-symmetric-nonlinear-scoring
+![image](https://github.com/shiyanwudi922/paper_summary/blob/master/picture/FusionNet/symmetric-nonlinear-scrong.png)
 
 加入了非线性之后，可以在history-of-word的不同部分之间提供更丰富的交互
 
@@ -72,28 +72,28 @@ symmetric-nonlinear-scoring
 
 1、端到端框架
 
-Figure4
+![image](https://github.com/shiyanwudi922/paper_summary/blob/master/picture/FusionNet/figure4.png)
 
 具体流程
 
-explanation
+![image](https://github.com/shiyanwudi922/paper_summary/blob/master/picture/FusionNet/end-to-end-explanation.jpg)
 
 2、应用于机器阅读理解
 
 使用attention对问题向量序列进行合成，作为rnn的初始状态；在每一个时刻，先根据前一时刻的hidden state和文本向量序列计算attention权重，作为当前时刻输出词的概率分布，然后计算文本向量序列的加权和作为当前时刻rnn的输入，计算其输出；重复该过程，得到起始词和终止词的概率分布。
 
-explanation
+![image](https://github.com/shiyanwudi922/paper_summary/blob/master/picture/FusionNet/comprehension-explanation.jpg)
 
 四、实验
 
 1、主要结果
 
-Table2&3&4
+![image](https://github.com/shiyanwudi922/paper_summary/blob/master/picture/FusionNet/table2&3&4.png)
 
 2、attention函数的对比
 
-table5
+![image](https://github.com/shiyanwudi922/paper_summary/blob/master/picture/FusionNet/table5.png)
 
 3、history-of-word的效果
 
-table6
+![image](https://github.com/shiyanwudi922/paper_summary/blob/master/picture/FusionNet/table6.png)
