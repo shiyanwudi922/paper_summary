@@ -32,7 +32,7 @@ fully-aware表示使用了词的完整信息，即history-of-word，来计算att
 
 （2’）high-level fusion（alternative）：把high-level的问题信息融合到word-level的文本中
 
-（3）self-boosted fusion：当文本比较长时，其中的距离比较大的字文本之间会互相依赖，所以使用自提升来对文本进行自我融合。由于文本通常含有过多的额信息，所以通常把自提升放在问题融合之后，从而更关注文本中和问题相关的部分。
+（3）self-boosted fusion：当文本比较长时，其中的距离比较大的子文本之间会互相依赖，所以使用自提升来对文本进行自我融合。由于文本通常含有过多的信息，所以通常把自提升放在问题融合之后，从而更关注文本中和问题相关的部分。
 
 （3’）self-boosted fusion（alternative）：在问题的条件上进行自提升的fusion，例如coattention。这样就可以在问题信息融合之前进行自提升融合
 
