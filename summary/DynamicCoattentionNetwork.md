@@ -58,8 +58,6 @@
 
 ![image](https://github.com/shiyanwudi922/paper_summary/blob/master/picture/DynamicCoattentionNetworksForQuestionAnswering/table1.png)
 
-table1
-
 2、case及解释
 
 ![image](https://github.com/shiyanwudi922/paper_summary/blob/master/picture/DynamicCoattentionNetworksForQuestionAnswering/figure5.png)
