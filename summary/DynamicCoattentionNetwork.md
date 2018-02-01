@@ -22,7 +22,7 @@
 
 ![image](https://github.com/shiyanwudi922/paper_summary/blob/master/picture/DynamicCoattentionNetworksForQuestionAnswering/figure2.png)
 
-（1）就算affinity matrix，其实就是文档编码矩阵和问题编码矩阵的乘积，其中每个元素对应一个文档词和一个问题词的点积。再对affinity matrix分别按照行和列进行softmax归一化，得到attention矩阵AQ和AD
+（1）计算affinity matrix，其实就是文档编码矩阵和问题编码矩阵的乘积，其中每个元素对应一个文档词和一个问题词的点积。再对affinity matrix分别按照行和列进行softmax归一化，得到attention矩阵AQ和AD
 
 （2）对文档信息和问题信息进行融合，即先通过attention矩阵AQ使用文档来表示问题，再通过attention矩阵AD使用问题来表示文档，得到coattention context
 
@@ -34,13 +34,13 @@
 
 （1）通过LSTM对decoder中的状态序列进行处理。在每一个时刻，把前一次计算的answer span的起始和终止向量进行连接，作为LSTM的输入，前一次的hidden state作为反馈输入，计算当前时刻的hidden state。
 
-![image](https://github.com/shiyanwudi922/paper_summary/blob/master/picture/DynamicCoattentionNetworksForQuestionAnswering/equation5)
+![image](https://github.com/shiyanwudi922/paper_summary/blob/master/picture/DynamicCoattentionNetworksForQuestionAnswering/equation5.png)
 
 （2）用两个结构相同，参数不同的HMN（highway maxout network）分别对coattention encoding中的每个词，计算其作为answer span的起始位置和终止位置的分数， 从而得到当前这轮迭代answer span的起始和终止位置。
 
-![image](https://github.com/shiyanwudi922/paper_summary/blob/master/picture/DynamicCoattentionNetworksForQuestionAnswering/equation8)
+![image](https://github.com/shiyanwudi922/paper_summary/blob/master/picture/DynamicCoattentionNetworksForQuestionAnswering/equation8.png)
 
-![image](https://github.com/shiyanwudi922/paper_summary/blob/master/picture/DynamicCoattentionNetworksForQuestionAnswering/equation6-7)
+![image](https://github.com/shiyanwudi922/paper_summary/blob/master/picture/DynamicCoattentionNetworksForQuestionAnswering/equation6-7.png)
 
 （3）HMN的网络结构和计算方式
 
@@ -62,7 +62,7 @@ table1
 
 2、case及解释
 
-![image](https://github.com/shiyanwudi922/paper_summary/blob/master/picture/DynamicCoattentionNetworksForQuestionAnswering/figure5)
+![image](https://github.com/shiyanwudi922/paper_summary/blob/master/picture/DynamicCoattentionNetworksForQuestionAnswering/figure5.png)
 
 （1）case1：开始时，模型预测的起始点是错的，但是在第三轮迭代时已经矫正到正确的位置；同理，对于错误的结束点，模型也可以做到正确矫正。
 
