@@ -20,7 +20,7 @@
 
 Pearson Correlation Coefficient
 
-![image](https://github.com/shiyanwudi922/paper_summary/tree/master/picture/Normalization/CosineNormalization/equation13.png)
+![image](https://github.com/shiyanwudi922/paper_summary/blob/master/picture/Normalization/CosineNormalization/equation13.png)
 
 使用Cosine Similarity或者Pearson Correlation Coefficient直接代替神经网络中的点积计算，可以减小神经元的方差。
 
@@ -45,20 +45,20 @@ Pearson Correlation Coefficient
 
 1、MNIST
 
-![image](https://github.com/shiyanwudi922/paper_summary/tree/master/picture/Normalization/CosineNormalization/figure2&table2.png)
+![image](https://github.com/shiyanwudi922/paper_summary/blob/master/picture/Normalization/CosineNormalization/figure2&table2.png)
 
 2、20NEWA GROUP
 
-![image](https://github.com/shiyanwudi922/paper_summary/tree/master/picture/Normalization/CosineNormalization/figure3&table3.png)
+![image](https://github.com/shiyanwudi922/paper_summary/blob/master/picture/Normalization/CosineNormalization/figure3&table3.png)
 
 3、CIFAR-10
 
-![image](https://github.com/shiyanwudi922/paper_summary/tree/master/picture/Normalization/CosineNormalization/figure4&table4.png)
+![image](https://github.com/shiyanwudi922/paper_summary/blob/master/picture/Normalization/CosineNormalization/figure4&table4.png)
 
 4、CIFAR-100
 
-![image](https://github.com/shiyanwudi922/paper_summary/tree/master/picture/Normalization/CosineNormalization/figure5&table5.png)
+![image](https://github.com/shiyanwudi922/paper_summary/blob/master/picture/Normalization/CosineNormalization/figure5&table5.png)
 
 5、SVHN
 
-![image](https://github.com/shiyanwudi922/paper_summary/tree/master/picture/Normalization/CosineNormalization/figure6&table6.png)
+![image](https://github.com/shiyanwudi922/paper_summary/blob/master/picture/Normalization/CosineNormalization/figure6&table6.png)
