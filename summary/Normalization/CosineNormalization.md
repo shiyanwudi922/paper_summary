@@ -16,7 +16,7 @@
 
 1、Cosine Similarity
 
-![image](https://github.com/shiyanwudi922/paper_summary/tree/master/picture/Normalization/CosineNormalization/equation4.png)
+![image](https://github.com/shiyanwudi922/paper_summary/blob/master/picture/Normalization/CosineNormalization/equation4.png)
 
 Pearson Correlation Coefficient
 
