@@ -34,6 +34,8 @@ figure1
 
 三、Feature-rich encoder
 
+figure_encoder
+
 1、Hybrid Embedding
 
 （1）词级别的embedding：文本和问题的词序列先映射成GloVe词向量序列（在训练过程中不再继续训练）
@@ -59,6 +61,8 @@ figure1
 
 
 四、Iterative Aligner：由多个可重复的计算单元顺序连接组成。其中每一个计算单元都对文本中的每一个词的表示进行更新，后一个计算单元以前一个计算单元的更新后的文本词表示和encoder输出的问题词表示作为输入，以更新后的文本词表示作为输出。具体的结构和流程如下。
+
+figure_iterator
 
 1、SFU(Semantic Fusion Unit)
 
@@ -102,6 +106,8 @@ equation3
 
 五、Memory-based Answer Pointer：由多个计算单元顺序连接而成，通过维护一个记忆向量，逐渐优化最终的结果
 
+fiture_answer_pointer
+
 1、初始化记忆向量，一般初始化为对于问题的概括向量，本文中，初始化为encoder中最后一个词的hidden state
 
 2、计算起始词的概率分布：通过记忆向量和fully-aware context repersentation来合成attention向量，作为起始词的概率分布
@@ -136,3 +142,28 @@ equation11
 
 该损失函数等价于同时优化EM和F1-score这两个指标。
 
+
+
+七、实验分析
+
+1、在TriviaQA数据集上的实验结果
+
+table2
+
+2、在SQuAD数据集上的实验结果
+
+table3
+
+3、Ablation的结果
+
+（1）模型中不同组成部分的重要性试验
+
+table4
+
+（2）Aligner和Answer Pointer的跳数(hop)的试验（当调整其中一个跳数时，另一个跳数默认为2）
+
+table5
+
+4、可视化：验证了该模型可以通过把备选答案信息融入到memory向两种，从而逐渐定位到正确答案
+
+figure2
