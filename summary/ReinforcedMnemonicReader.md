@@ -70,7 +70,7 @@ RMR解决方法：引入新的目标函数，把最大似然交叉熵和强化�
 
 （2）具体的处理方式类似于highway network：
 
-![image](https://github.com/shiyanwudi922/paper_summary/blob/master/picture/ReinforcedMnemonicReader/figure_sfu.png)
+![image](https://github.com/shiyanwudi922/paper_summary/blob/master/picture/ReinforcedMnemonicReader/figure_sfu.jpg)
 
 ![image](https://github.com/shiyanwudi922/paper_summary/blob/master/picture/ReinforcedMnemonicReader/equation4.png)
 
