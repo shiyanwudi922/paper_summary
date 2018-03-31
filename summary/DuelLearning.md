@@ -22,7 +22,7 @@
 
 二、对偶学习
 
-![image](https://github.com/shiyanwudi922/paper_summary/blob/master/picture/DuelLearning/algorithm1.png)
+![image](https://github.com/shiyanwudi922/paper_summary/blob/master/picture/DuleLearning/algorithm1.png)
 
 1、在训练中，主任务的翻译模型在生成翻译结果时使用beam search；
 
