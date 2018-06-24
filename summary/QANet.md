@@ -18,13 +18,36 @@
 
 （3）self-attention-layer：使用multi-head attention，head数为8
 
-（4）在所有的子模块（convolution/attention/ffn）上都使用residual连接
+（4）在所有的子模块（convolution/attention/ffn）中，都有layer normalizaiton，以及residual连接
+
+（5）这里encoder block的个数为1
 
 
 
 3、context-query attention layer
 
-（1）用C（n\*d）和Q（m\*d）分别表示文档和问题向量集合，先计算相似度矩阵S（n\*m），按行进行归一化得到S'(n\*m)，按列进行归一化得到S''(n\*m)，然后进行interaction，方法是先用文档表示问题，再用问题表示文档，表达式为B=S'\*S''^T^\*C
+（1）用C（n\*d）和Q（m\*d）分别表示文档和问题向量集合，先计算相似度矩阵S（n\*m），按行进行归一化得到S'(n\*m)，按列进行归一化得到S''(n\*m)，然后进行interaction，方法用问题表示文档，得到attention矩阵A，表达式为A = S'\*Q；以及先用文档表示问题，再用问题表示文档，得到attention矩阵B，表达式为B=S'\*S''^T^\*C。C、A和B一起做为下一层的输入。
 
 （2）向量相似度计算，使用trilinear函数f(q, c) = W~0~[q, c, q⊙c]
 
+
+
+4、model encoder layer
+
+（1）本层的输入为C、A和B，在每一个位置上的输入为[c, a, c⊙a, c⊙b]
+
+（2）本层encoder的框架和embedding encoder layer相同，只是其中卷积层个数为2，同时encoder block的个数为7，且在其中每3个副本之间进行权重共享
+
+
+
+5、output layer
+
+（1）生成答案起始和终止位置的概率分布：考虑共享权重，前面的model encoder有三个不同的层，其输出分别设为M~0~、M~1~、M~2~，先将M~0~和M~1~、M~0~和M~2~进行连接，在分别进行线性映射和softmax，得到起点和重点位置的概率分布，表达式为：
+
+p^1^ = softmax(W~1~[M~0~;M~1~])，p^2^ = softmax(W~2~[M~0~;M~2~])
+
+以起点和终点的概率乘积作为一个答案的分数，在推断时选择分数最高的答案作为最终答案。
+
+（2）损失函数：使用训练集上的平均交叉熵做为目标函数
+
+figure_obj
