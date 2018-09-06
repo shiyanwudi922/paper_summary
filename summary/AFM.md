@@ -26,7 +26,7 @@
 
 1、model
 
-![image](https://github.com/shiyanwudi922/paper_summary/blob/master/picture/AFN/figure1.png)
+![image](https://github.com/shiyanwudi922/paper_summary/blob/master/picture/AFM/figure1.png)
 
 其中，input layer、embedding layer和FM中相同，对非零特征进行embedding，然后和对应的特征值相乘。
 
@@ -34,7 +34,7 @@
 
 设输入特征向量为x，其中非零特征集合为X，embedding layer的输出为一个embedding向量集合E={vixi}~i∈X~，pair-wise interaction layer的输入为E，对E中的向量进行两两按位相乘，输出所有的向量对两两按位相乘后的结果向量集合
 
-![image](https://github.com/shiyanwudi922/paper_summary/blob/master/picture/AFN/equation2.png)
+![image](https://github.com/shiyanwudi922/paper_summary/blob/master/picture/AFM/equation2.png)
 
 f~PI~(E)是一个向量集合，其中每一个向量是两个不同特征的embedding按位相乘的结果。
 
@@ -42,13 +42,13 @@ f~PI~(E)是一个向量集合，其中每一个向量是两个不同特征的emb
 
 Attention-based pooling layer以f~PI~(E)为输入，对于其中每一个向量，先用一个attention network计算其相应的attention score，并进行softmax得到attention weight，该attention network是一个两层神经网络
 
-![image](https://github.com/shiyanwudi922/paper_summary/blob/master/picture/AFN/equation5.png)
+![image](https://github.com/shiyanwudi922/paper_summary/blob/master/picture/AFM/equation5.png)
 
 即使用additive attention。
 
 之后，使用attention weight对f~PI~(E)中的向量进行加权求和
 
-![image](https://github.com/shiyanwudi922/paper_summary/blob/master/picture/AFN/equation4.png)
+![image](https://github.com/shiyanwudi922/paper_summary/blob/master/picture/AFM/equation4.png)
 
 最终，f~Att~(f~PI~(E))是一个向量
 
@@ -56,7 +56,7 @@ Attention-based pooling layer以f~PI~(E)为输入，对于其中每一个向量�
 
 对f~Att~(f~PI~(E))再进行一次单层传输，从而得到模型的输出，模型的总体计算形式为
 
-![image](https://github.com/shiyanwudi922/paper_summary/blob/master/picture/AFN/equation6.png)
+![image](https://github.com/shiyanwudi922/paper_summary/blob/master/picture/AFM/equation6.png)
 
 5、训练
 
@@ -72,7 +72,7 @@ Attention-based pooling layer以f~PI~(E)为输入，对于其中每一个向量�
 
 （1）dropout：先把l2 norm的系数设置为0，从而只有dropout对模型产生影响。另外把AFM中的attention部分删除，就变成了FM，从而进行实验。
 
-![image](https://github.com/shiyanwudi922/paper_summary/blob/master/picture/AFN/figure2.png)
+![image](https://github.com/shiyanwudi922/paper_summary/blob/master/picture/AFM/figure2.png)
 
 通过设置合适的dropout比率，AFM和FM的性能都有很大提升。
 
@@ -84,7 +84,7 @@ Attention-based pooling layer以f~PI~(E)为输入，对于其中每一个向量�
 
 在dropout设置为最优值的基础上（下图中λ = 0的情况），使用l2 norm可以进一步提升性能
 
-![image](https://github.com/shiyanwudi922/paper_summary/blob/master/picture/AFN/figure3.png)
+![image](https://github.com/shiyanwudi922/paper_summary/blob/master/picture/AFM/figure3.png)
 
 
 
@@ -92,7 +92,7 @@ Attention-based pooling layer以f~PI~(E)为输入，对于其中每一个向量�
 
 （1）attention factor（attention network中隐含层节点数）
 
-![image](https://github.com/shiyanwudi922/paper_summary/blob/master/picture/AFN/figure4.png)
+![image](https://github.com/shiyanwudi922/paper_summary/blob/master/picture/AFM/figure4.png)
 
 随着attention factor的变化，网络的性能相对比较稳定。
 
@@ -100,7 +100,7 @@ Attention-based pooling layer以f~PI~(E)为输入，对于其中每一个向量�
 
 （2）收敛速度和拟合、泛化能力
 
-![image](https://github.com/shiyanwudi922/paper_summary/blob/master/picture/AFN/figure5.png)
+![image](https://github.com/shiyanwudi922/paper_summary/blob/master/picture/AFM/figure5.png)
 
 从图中可以看出，AFM的收敛速度更快，同时其拟合能力和泛化能力都更强。
 
@@ -110,7 +110,7 @@ Attention-based pooling layer以f~PI~(E)为输入，对于其中每一个向量�
 
 之后，随机选择三个样本，提取其交叉特征的attention score和interaction score
 
-![image](https://github.com/shiyanwudi922/paper_summary/blob/master/picture/AFN/table1.png)
+![image](https://github.com/shiyanwudi922/paper_summary/blob/master/picture/AFM/table1.png)
 
 其中，表中每一个元素包含两个数字，第一个数字表示attention score（attention weight），第二个数字表示interaction score（xixj）。
 
@@ -120,7 +120,7 @@ Attention-based pooling layer以f~PI~(E)为输入，对于其中每一个向量�
 
 3、不同模型间的对比
 
-![image](https://github.com/shiyanwudi922/paper_summary/blob/master/picture/AFN/table2.png)
+![image](https://github.com/shiyanwudi922/paper_summary/blob/master/picture/AFM/table2.png)
 
 （1）AFM以最少的参数取得了最好的性能
 
