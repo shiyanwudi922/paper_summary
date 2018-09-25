@@ -18,8 +18,6 @@
 
 ![image](https://github.com/shiyanwudi922/paper_summary/blob/master/picture/PNN/equation3.png)
 
-![image](https://github.com/shiyanwudi922/paper_summary/blob/master/picture/PNN/equation4.png)
-
 ![image](https://github.com/shiyanwudi922/paper_summary/blob/master/picture/PNN/equation5.png)
 
 ![image](https://github.com/shiyanwudi922/paper_summary/blob/master/picture/PNN/equation6.png)
