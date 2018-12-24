@@ -1,6 +1,6 @@
 一、本文动机
 
-1、在实时响应任务重，模型需要有很高的准确率和严格的响应时间限制。而通常高准确率的模型都具有更大的深度、更多的参数，以及更高的计算复杂度，使得这些模型在预测时会非常耗时，从而不能应用在对相应时间要求很高的系统中。
+1、在实时响应任务中，模型需要有很高的准确率和严格的响应时间限制。而通常高准确率的模型都具有更大的深度、更多的参数，以及更高的计算复杂度，使得这些模型在预测时会非常耗时，从而不能应用在对响应时间要求很高的系统中。
 
 2、通常有两种方法可以用于在保证适当性能的同时降低运行时复杂度
 
@@ -76,7 +76,7 @@
 
 4、Gradient Block
 
-当同时使用交叉熵和hint loss作为目标函数对booster net进行更新时，会是的booster net的输出收到light net的严重影响，从而妨碍了booster net直接从任务中进行学习。
+当同时使用交叉熵和hint loss作为目标函数对booster net进行更新时，会使得booster net的输出受到light net的严重影响，从而妨碍了booster net直接从任务中进行学习。
 
 另一方面，由于light net的学习能力有限，会使得booster net的性能下降，而light net会在训练过程中从booster net传输的知识中进行学习，所以会进一步降低light net的性能。
 
@@ -106,7 +106,7 @@ RocketLaunching中不同组成部分的效果：
 
 特征可视化：
 
-![image](https://github.com/shiyanwudi922/paper_summary/blob/master/picture/RocketLaunching/Figure5.png)
+![image](https://github.com/shiyanwudi922/paper_summary/blob/master/picture/RocketLaunching/figure5.png)
 
 从该图中可以看出，light net和booster net在低层所生成的feature map是非常相似的。
 
@@ -116,7 +116,7 @@ RocketLaunching中不同组成部分的效果：
 
 3、Experiments on real Advertisement Dataset
 
-![image](https://github.com/shiyanwudi922/paper_summary/blob/master/picture/RocketLaunching/Table5.png)
+![image](https://github.com/shiyanwudi922/paper_summary/blob/master/picture/RocketLaunching/table5.png)
 
 
 
