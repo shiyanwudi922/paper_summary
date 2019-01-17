@@ -28,7 +28,7 @@
 
 1、Embedding and Stacking Layer
 
-先对离散特征进行embedding，对连续特征进行归一化（在本文中，连续特征使用log变换进行归一化）；然后将其进行连接（本文中连接操作成为stacking）
+先对离散特征进行embedding，对连续特征进行归一化（在本文中，连续特征使用log变换进行归一化）；然后将其进行连接（本文中连接操作称为stacking）
 
 ![image](https://github.com/shiyanwudi922/paper_summary/blob/master/picture/DeepCrossNetworkForAdClickPrediction/equation2.png)
 
