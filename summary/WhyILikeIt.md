@@ -16,9 +16,9 @@
 
 二、模型结构
 
-![image](https://github.com/shiyanwudi922/paper_summary/blob/master/picture/WhyILikeIt/Figure1.png)
+![image](https://github.com/shiyanwudi922/paper_summary/blob/master/picture/WhyILikeIt/figure1.png)
 
-![image](https://github.com/shiyanwudi922/paper_summary/blob/master/picture/WhyILikeIt/Figure2.jpg)
+![image](https://github.com/shiyanwudi922/paper_summary/blob/master/picture/WhyILikeIt/figure2.jpg)
 
 具体的解释：
 
@@ -52,3 +52,4 @@
 
 3、Performance of the Discriminator 
 
+![image](https://github.com/shiyanwudi922/paper_summary/blob/master/picture/WhyILikeIt/figure3.jpg)
