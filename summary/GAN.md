@@ -1,10 +1,10 @@
-![image](https://github.com/shiyanwudi922/paper_summary/blob/master/picture/GAN/GAN_arch.png)
+![image](https://github.com/shiyanwudi922/paper_summary/blob/master/picture/GAN/GAN_arch.jpeg)
 
 ![image](https://github.com/shiyanwudi922/paper_summary/blob/master/picture/GAN/GAN_V.png)
 
-![image](https://github.com/shiyanwudi922/paper_summary/blob/master/picture/GAN/GAN_D.png)
+![image](https://github.com/shiyanwudi922/paper_summary/blob/master/picture/GAN/GAN_D.jpeg)
 
-![image](https://github.com/shiyanwudi922/paper_summary/blob/master/picture/GAN/GAN_G.png)
+![image](https://github.com/shiyanwudi922/paper_summary/blob/master/picture/GAN/GAN_G.jpeg)
 
 三、优化算法
 
@@ -22,7 +22,7 @@
 
 这一步事实上是在给定G的条件下，根据D来求得V(G,D)的上确界V(G,D*)，如下图所示
 
-![image](https://github.com/shiyanwudi922/paper_summary/blob/master/picture/GAN/GAN_Supp.png)
+![image](https://github.com/shiyanwudi922/paper_summary/blob/master/picture/GAN/GAN_Supp.jpeg)
 
 3、第二步是在固定D*的条件下，根据G对V(G,D)进行一次梯度下降优化，即对上确界进行一次优化
 
