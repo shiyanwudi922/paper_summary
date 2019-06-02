@@ -20,7 +20,7 @@
 
 2、在优化算法中的每一轮迭代中，分两步进行，第一步会在给定G的条件下，对D进行优化。
 
-这一步事实上是在给定G的条件下，根据D来求得V(G,D)的上确界V(G,D*)，如下图所示
+这一步事实上是在给定G的条件下，根据D来求得V(G,D)的上确界V(G,D*)，如下图黑线所示
 
 ![image](https://github.com/shiyanwudi922/paper_summary/blob/master/picture/GAN/GAN_Supp.jpeg)
 
@@ -32,3 +32,12 @@
 
 5、V(G,D*)是G的凸函数，且有唯一的全局最优解，所以只要G的更新步长足够小，则最终一定能收敛到P~data~
 
+
+
+参考：
+
+1、<https://medium.com/@samramasinghe/generative-adversarial-networks-a-theoretical-walk-through-5889d5a8f2bb>
+
+2、<https://zhuanlan.zhihu.com/p/29837245>
+
+3、<https://zhuanlan.zhihu.com/p/27012520>
